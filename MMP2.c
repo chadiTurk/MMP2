@@ -101,11 +101,18 @@ Set *difference(Set a, Set b){
 
 //traverse and print
 void print(Set *s){
-	while(s != NULL){
+	
+	if(s->val == NULL){
+		printf("empty\n");
+	}
+	else{
+		while(s != NULL){
 		printf("%d ", s->val);
 		s = s->s;
 	}
 	printf("\n");
+	}
+	
 }
 
 int main(){
