@@ -1,4 +1,5 @@
 /*
+MMP2 - Dynamic Memory Management and Data Type
 ESCALONA, HACINAS, TURK
 CSADPRG S12
 */
@@ -77,7 +78,7 @@ Set *unionSet(Set *a, Set *b){
 //common values between 2 sets; ascending
 Set *intersect(Set *a, Set *b){
 	Set *newIntersectSet = create();
-	Set * temp = b;
+	Set *temp = b;
 	
 	while(a!=NULL){
 		while(temp!=NULL){
@@ -95,8 +96,29 @@ Set *intersect(Set *a, Set *b){
 }
 
 //non-common values between 2 sets; ascending
-Set *difference(Set a, Set b){
+Set *difference(Set *a, Set *b){
+	Set *newDifferenceSet = create();
+	Set *temp = intersect(a, b);
 	
+	while(a != NULL){
+		
+		
+		while(temp!=NULL){
+			if(a->val == temp->val){
+				break;
+			}
+
+			temp = temp->s;
+			if(temp == NULL){
+				newDifferenceSet = add(newDifferenceSet,a->val);
+			}
+		}
+				
+		temp = b;
+		a = a->s;
+	}
+	
+	return newDifferenceSet;
 }
 
 //traverse and print
@@ -126,29 +148,28 @@ int main(){
 	s1 = add (s1, 2);
 	s1 = add (s1, 8);
 	s1 = add (s1, 6);
-	print (s1); // this statement will display (2, 4, 6, 8)
+	print (s1); // this statement will display (2, 4, 6, 8) OK
 	s2 = add (s2, 2);
 	s2 = add (s2, 5);
-	print (s2); // this statement will display (2, 5)
+	print (s2); // this statement will display (2, 5) OK
 	s3 = add (s3, 7);
 	s3 = add (s3, 6);
-	print (s3); // this statement will display (6, 7)
+	print (s3); // this statement will display (6, 7) OK
 
-	//s2 = add(s2,4);
-	print (unionSet(s1, s2)); // this statement will return (2, 4, 5, 6, 8)
-	print (intersect(s1, s2)); // this statement will return (2)
-	//print (difference(s1, s3)); // this statement will return (2, 4, 8)
-	print (intersect(s2, s3)); // this statement will return ()
-	print (unionSet(s2, s3)); // this statement will return (2, 5, 6, 7)
-	//
-	//Set s4 = create();
-	//s4 = add(s4, 3);
-	//s4 = add(s4, 3);
-	//s4 = add(s4, 3);
-	//s4 = add(s4, 2);
-	//s4 = add(s4, 2);
-	//s4 = add(s4, 1);
-	//print (s4); // this statement will display (1, 2, 3)
+	print (unionSet(s1, s2)); // this statement will return (2, 4, 5, 6, 8) OK
+	print (intersect(s1, s2)); // this statement will return (2) OK
+	print (difference(s1, s3)); // this statement will return (2, 4, 8) OK
+	print (intersect(s2, s3)); // this statement will return () OK
+	print (unionSet(s2, s3)); // this statement will return (2, 5, 6, 7) OK
+	
+	Set *s4 = create();
+	s4 = add(s4, 3);
+	s4 = add(s4, 3);
+	s4 = add(s4, 3);
+	s4 = add(s4, 2);
+	s4 = add(s4, 2);
+	s4 = add(s4, 1);
+	print (s4); // this statement will display (1, 2, 3) OK
 	
 	
 	return 0;
