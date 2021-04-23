@@ -157,7 +157,6 @@ Set *intersect(Set *a, Set *b){
 Set *difference(Set *a, Set *b){
 	Set *newDifferenceSet = create();
 	Set *temp = intersect(a, b);
-	
 	while(a != NULL){
 		
 		
