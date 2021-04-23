@@ -108,6 +108,8 @@ Set *add(Set *s, int val){
 //refer to this: https://www.tutorialspoint.com/cprogramming/c_unions.htm
 Set *unionSet(Set *a, Set *b){ 
 	Set *newUnionSet = create();
+	
+	//simultaneous adding of values
 	while(a != NULL && b != NULL){
 		if(a->val < b->val){
 			newUnionSet = add(newUnionSet, a->val);
@@ -118,16 +120,16 @@ Set *unionSet(Set *a, Set *b){
 		}
 	}
 	
+	
+	//adding of remaining values
 	while(a != NULL){
 		newUnionSet = add(newUnionSet, a->val);
 		a = a->s;
 	}
-	
 	while(b != NULL){
 		newUnionSet = add(newUnionSet, b->val);
 		b = b->s;
 	}
-	
 	
 	return newUnionSet;
 }
