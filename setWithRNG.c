@@ -143,7 +143,6 @@ Set *intersect(Set *a, Set *b){
 		while(temp!=NULL){
 			if(a->val == temp->val){
 				newIntersectSet = add(newIntersectSet,a->val);
-				
 			}
 			temp = temp->s;
 		}
