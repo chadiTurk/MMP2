@@ -13,21 +13,26 @@ typedef struct Set{
 }Set;
 
 
+//create function; returns null valued set
+Set *create(){
+	Set *newSet = malloc(sizeof(Set)); //allocate memory for the 'newSet'
+	newSet->s = NULL;
+	newSet->val = NULL;
+	return newSet;
+}
 
-	if(s ->isEmpty == true){//for head node
+Set *add(Set *s, int val){
+	if(s -> val == NULL){//for head node
 		s->val = val;
-		s->isEmpty = false;
 		return s;	
 	}else{ //for child/subsequent nodes
 		Set *traversal = s;
-		
 		do{
 			//check if val < head
 			if(val < traversal->val){
 				Set *newHead = create();
 				newHead->val = val;
 				newHead->s = traversal;
-				newHead->isEmpty = false;
 				return newHead;
 			}
 			
@@ -37,7 +42,6 @@ typedef struct Set{
 					Set *newSet = create();
 					newSet->val = val;
 					newSet->s = traversal->s;
-					newSet->isEmpty = false;
 					traversal->s = newSet;
 					break;
 				}
@@ -46,13 +50,11 @@ typedef struct Set{
 			if(traversal->val < val && traversal->s == NULL){
 				Set *newLast = create();
 				newLast->val = val;
-				newLast->isEmpty = false;
 				traversal->s = newLast;
 				break;
 			}
 			
 			traversal = traversal->s;
-			
 		}while(traversal != NULL);
 		return s;
 	}
@@ -97,6 +99,7 @@ Set *intersect(Set *a, Set *b){
 		while(temp!=NULL){
 			if(a->val == temp->val){
 				newIntersectSet = add(newIntersectSet,a->val);
+				
 			}
 			temp = temp->s;
 		}
@@ -111,6 +114,7 @@ Set *intersect(Set *a, Set *b){
 Set *difference(Set *a, Set *b){
 	Set *newDifferenceSet = create();
 	Set *temp = intersect(a, b);
+	
 	while(a != NULL){
 		
 		
@@ -135,7 +139,7 @@ Set *difference(Set *a, Set *b){
 //traverse and print
 void print(Set *s){
 	
-	if(s->isEmpty == true){
+	if(s->val == NULL){
 		printf("empty\n");
 	}
 	else{
@@ -144,24 +148,6 @@ void print(Set *s){
 		s = s->s;
 	}
 	printf("\n");
-	}
-	
-}
-
-//search for the given number in the set
-int search(Set *s, int num){ 
-	
-	if(s->isEmpty == true){
-		return 0; //number not found in set
-	}
-	else{
-		while(s != NULL){
-		if(s->val == num)
-			return 1; //number is found
-		
-		s = s->s;
-		}
-
 	}
 	
 }
