@@ -6,14 +6,24 @@ CSADPRG S12
 
 #include <stdio.h>
 #include <stdlib.h>
+#include <stdbool.h>
 //use as pointer
 typedef struct Set{
 	int val;
 	struct Set *s;
+	bool isEmpty;
 }Set;
 
 
+//create function; returns reference to a new set
+Set *create(){
+	Set *newSet = malloc(sizeof(Set)); //allocate memory for the 'newSet'
+	newSet->s = NULL;
+	newSet->isEmpty = true;
+	return newSet;
+}
 
+Set *add(Set *s, int val){
 	if(s ->isEmpty == true){//for head node
 		s->val = val;
 		s->isEmpty = false;
