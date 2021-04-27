@@ -33,6 +33,7 @@ int main()
 	s3 = create();
 	
 	for(; i<5; i++){
+		
 		s1 = add(s1, rand() % (max + 1 - min) + min); //generates random number that ranges from 0 - 10
 		
 		s2= add(s2, rand() % (max + 1 - min) + min); //generates random number that ranges from 0 - 10
@@ -61,12 +62,12 @@ int main()
 Set *create(){
 	Set *newSet = malloc(sizeof(Set)); //allocate memory for the 'newSet'
 	newSet->s = NULL;
-	newSet->val = NULL;
+	newSet->val = -1;
 	return newSet;
 }
 
 Set *add(Set *s, int val){
-	if(s -> val == NULL){//for head node
+	if(s -> val == -1){//for head node
 		s->val = val;
 		return s;	
 	}else{ //for child/subsequent nodes
