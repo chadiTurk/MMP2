@@ -94,8 +94,8 @@ Set *create(){
 
 Set *add(Set *s, int val){
 	
-	if(search(s, val) == 1)
-		return s;
+	if(search(s, val) == 1) //search 'val' in set
+		return s; //number is found, terminate function 
 	
 	if(s ->isEmpty == true){//for head node
 		s->val = val;
@@ -231,7 +231,7 @@ void print(Set *s){
 	
 }
 
-int search(Set *s, int num){
+int search(Set *s, int num){ //search for the given number in the set
 	
 	if(s->isEmpty == true){
 		return 0; //number not found in set
