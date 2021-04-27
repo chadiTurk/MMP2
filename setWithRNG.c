@@ -182,10 +182,10 @@ Set *difference(Set *a, Set *b){
 //traverse and print
 void print(Set *s){
 	
-	if(s->val == NULL){
+	if(s == NULL){
 		printf("empty\n");
 	}
-	else{
+	else{	
 		while(s != NULL){
 		printf("%d ", s->val);
 		s = s->s;
