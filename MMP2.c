@@ -7,6 +7,7 @@ CSADPRG S12
 #include <stdio.h>
 #include <stdlib.h>
 #include <stdbool.h>
+
 //use as pointer
 typedef struct Set{
 	int val;
@@ -23,6 +24,7 @@ Set *create(){
 	return newSet;
 }
 
+//adds set objects depending on conditions
 Set *add(Set *s, int val){
 	if(s ->isEmpty == true){//for head node
 		s->val = val;
@@ -209,7 +211,6 @@ int main(){
 	s4 = add(s4, 2);
 	s4 = add(s4, 1);
 	print (s4); // this statement will display (1, 2, 3) OK
-	
 	
 	return 0;
 }
