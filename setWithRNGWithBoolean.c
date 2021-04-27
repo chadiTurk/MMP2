@@ -41,11 +41,26 @@ srand(time(0)); //seed RNG
 		s2= add(s2, rand() % (max + 1 - min) + min); //generates random number that ranges from 0 - 10
 	}
 	
+
 	printf("Set 1: ");
 	print(s1);
 	
 	printf("Set 2: ");
 	print(s2);
+	
+	s3 = add(s3,0);
+	s3 = add(s3,-1);
+		s3 = add(s3,0);
+			s3 = add(s3,-1);
+			s3 = add(s3,-5);
+			s3 = add(s3,5);
+			s3 = add(s3,0);
+			s3 = add(s3,1);
+			s3 = add(s3,-99);
+			s3 = add(s3,500);
+			s3 = add(s3,0);
+	printf("Set 3: ");
+	print(s3);
 	
 	printf("\nUnion: ");
 	print(unionSet(s1, s2));
@@ -75,9 +90,10 @@ Set *add(Set *s, int val){
 		return s;	
 	}else{ //for child/subsequent nodes
 		Set *traversal = s;
+		
 		do{
 			//check if val < head
-			if(val < traversal->val){
+			if(val < traversal->val && val != 0){
 				Set *newHead = create();
 				newHead->val = val;
 				newHead->s = traversal;
@@ -87,23 +103,26 @@ Set *add(Set *s, int val){
 			
 			//check if curr->val < val && val < curr->s->val && curr->s != NULL
 			if(traversal->s != NULL)
-				if(traversal->val < val && val < traversal->s->val){
+				if(traversal->val < val && val < traversal->s->val && val != 0){
 					Set *newSet = create();
 					newSet->val = val;
 					newSet->s = traversal->s;
+					newSet->isEmpty = false;
 					traversal->s = newSet;
 					break;
 				}
 			
 			//check if curr->val < val && curr->s == NULL
-			if(traversal->val < val && traversal->s == NULL){
+			if(traversal->val < val && traversal->s == NULL && val != 0){
 				Set *newLast = create();
 				newLast->val = val;
+				newLast->isEmpty = false;
 				traversal->s = newLast;
 				break;
 			}
 			
 			traversal = traversal->s;
+			
 		}while(traversal != NULL);
 		return s;
 	}
