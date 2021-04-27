@@ -26,6 +26,10 @@ Set *create(){
 
 //adds set objects depending on conditions
 Set *add(Set *s, int val){
+	
+	if(search(s, val) == 1)
+		return s;
+	
 	if(s ->isEmpty == true){//for head node
 		s->val = val;
 		s->isEmpty = false;
