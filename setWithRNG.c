@@ -175,14 +175,14 @@ Set *difference(Set *a, Set *b){
 		temp = b;
 		a = a->s;
 	}
-	
+		
 	return newDifferenceSet;
 }
 
 //traverse and print
 void print(Set *s){
 	
-	if(s == NULL){
+	if(s->val == -1){
 		printf("empty\n");
 	}
 	else{	
